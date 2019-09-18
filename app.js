@@ -85,20 +85,56 @@ let characters  = [createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Mi
     createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5),
 ];
 characters.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rivendell', 4,3));
-characters.find((char) => char.nickname === 'aragorn').describe()
+
+characters.find((char) => char.nickname === 'aragorn').describe();
+
 let hobbits = characters.filter((char) => char.race === 'Hobbit');
 console.log(hobbits);
+
 let strChars = characters.filter((char) => char.attack > 5);
 console.log(strChars);
+
+characters [1].evaluateFight(characters[0]);
 
 function equipItem(character, string) {Object.assign(character, {equipped: string})}
 equipItem(characters[0], 'a wizard staff');
 equipItem(characters[1], 'the Ring');
 equipItem(characters[2], 'String and Barrow Blade');
-equipItem(characters[2], 'String and Barrow Blade');
 equipItem(characters[3], 'Anduril');
 equipItem(characters[4], 'Bow and Arrow');
 equipItem(characters[5], 'Hadhafang');
 
-characters [1].evaluateFight(characters[0]);
+
 characters.forEach(character => character.describe());
+
+const HEROES = [
+    { id: 1, name: 'Captain America', squad: 'Avengers' },
+    { id: 2, name: 'Iron Man', squad: 'Avengers' },
+    { id: 3, name: 'Spiderman', squad: 'Avengers' },
+    { id: 4, name: 'Superman', squad: 'Justice League' },
+    { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+    { id: 6, name: 'Aquaman', squad: 'Justice League' },
+    { id: 7, name: 'Hulk', squad: 'Avengers' },
+];
+
+function findOne(arr, query) {
+    let match = null;
+    arr.find((item) => {
+        let success = true;
+        for(let key in query) {
+            if(item[key] !== query[key]) {
+                success = false;
+            }
+        }
+        if(success) {
+             match = item;
+        }
+    });
+    return match;
+}
+console.log(findOne(HEROES, { id: 1 }));
+console.log(findOne(HEROES, { id: 10 }));
+console.log(findOne(HEROES, { id: 2, name: 'Aquaman' }));
+console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
+console.log(findOne(HEROES, { squad: 'Justice League' }));
+
