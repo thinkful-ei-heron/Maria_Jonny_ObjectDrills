@@ -55,7 +55,7 @@ function decodeWords(encodedArr) {
 }
 console.log(decodeWords(test));
 
-createCharacter() {
+function createCharacter() {
     return {
         name: '',
         nickname: '',
@@ -63,6 +63,9 @@ createCharacter() {
         origin: '',
         describe: function () {
            console.log(`${this.name} is a ${this.race} from ${this.origin}.`)
+        },
+        evaluateFight: function(character) {
+            "Your opponent takes {x} damage and you receive {y} damage"
         }
     }
 }
